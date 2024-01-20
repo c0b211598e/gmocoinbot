@@ -1,0 +1,19 @@
+version: "3"
+services:
+  gmocoinbot-server:
+    container_name: gmocoinbot-container
+    image: gmocoinbot-image
+    build:
+      context: "./docker"
+      dockerfile: Dockerfile
+    volumes:
+      - .:/work
+    shm_size: "2gb"
+    working_dir: /work
+    tty: true
+    environment:
+      TZ: "Asia/Tokyo"
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+      DEBUG: "True"
+    command: python src/start_all_bots.py
